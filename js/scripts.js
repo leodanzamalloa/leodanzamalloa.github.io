@@ -54,7 +54,7 @@
                         },
                         {
                             title: "Carrera de caballos Espinar",
-                            image: "assets/fotografia/personal/caballos1.jpg",
+                            image: "https://www.behance.net/gallery/231113447/Carrera-de-Caballos-Espinar",
                             description: "Sesión en estudio",
                             gallery: [
                                 "assets/fotografia/personal/caballos1.jpg",
@@ -363,4 +363,5 @@
             loadAllProjects();
             // Ocultar contenedor de proyectos por categoría al inicio
             projectsContainer.style.display = 'none';
+
         });
