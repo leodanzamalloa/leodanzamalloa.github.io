@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Leodan Zamalloa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="social-header">
+            <a href="https://www.instagram.com/leodanzamalloa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.behance.net/leodanzamalloa" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
+            <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <h1>LEODAN ZAMALLOA</h1>
+        <p>Fotógrafo | Diseñador | Desarrollador Web</p>
+    </header>
+
+    <main>
+        <nav id="breadcrumbs">
+            <a href="#" data-category="all">Inicio</a>
+        </nav>
+
+        <div class="category-buttons">
+            <button data-category="fotografia">Fotografía</button>
+            <button data-category="diseno">Diseño</button>
+            <button data-category="desarrollo">Desarrollo Web</button>
+        </div>
+
+        <div id="subcategories" class="subcategories"></div>
+
+        <!-- Sección Todos al inicio -->
+        <section id="all-projects" class="all-projects-section">
+            <h2>Todos mis proyectos</h2>
+            <div id="all-projects-container" class="all-projects-grid"></div>
+        </section>
+
+        <!-- Sección de proyectos por categoría -->
+        <div id="projects-container" class="projects-grid"></div>
+    </main>
+
+    <section class="contact-section">
+        <h2>Contáctame</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <input type="text" id="name" required>
+                <label for="name">Nombre completo</label>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" required>
+                <label for="email">Correo electrónico</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="subject" required>
+                <label for="subject">Asunto</label>
+            </div>
+            <div class="form-group">
+                <textarea id="message" required></textarea>
+                <label for="message">Mensaje</label>
+            </div>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>LEODAN ZAMALLOA</h3>
+                <p>Creatividad visual y desarrollo web</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> leodanzamalloa1998@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +51 937 489 235</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Modal Galería -->
+    <div id="gallery-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="slider-container">
+                <div class="slider-track" id="slider-track"></div>
+            </div>
+            <div class="slider-nav">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <div class="slide-counter">
+                    <span id="current-slide">1</span>/<span id="total-slides">0</span>
+                </div>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+<script src="js/scripts.js"></script>
+</body>
+</html>
