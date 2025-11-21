@@ -66,7 +66,7 @@
                     paisajes: [
                         {
                             title: "Paisajes",
-                            image: "assets/fotografia/paisajes/nevado.jpg",
+                            image: "https://ibb.co/C5TgfR3J",
                             description: "Sesión en estudio",
                             gallery: [
                                 "assets/fotografia/paisajes/salkantay.jpg",
@@ -365,3 +365,4 @@
             projectsContainer.style.display = 'none';
 
         });
+
