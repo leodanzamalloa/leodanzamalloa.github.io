@@ -2,6 +2,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Datos de proyectos con galerías
     const projectsData = {
         fotografia: {
+            paisajes: [
+                {
+                    title: "Paisajes y retratos",
+                    image: "https://i.ibb.co/rhDVNVF/nevado.jpg",
+                    description: "Sesión en estudio",
+                    gallery: [
+                        "https://i.ibb.co/VYDJTjWr/retrato.jpg",
+                        "https://i.ibb.co/LXtTMCj7/nevado.jpg",
+                        "https://i.ibb.co/rhDVNVF/nevado.jpg",
+                        "https://i.ibb.co/TMfnPMGq/campo.jpg",
+                        "https://i.ibb.co/BVKxPFtb/nevado-urubamba.jpg",
+                        "https://i.ibb.co/h1Vq41Zf/salkantay.jpg",
+                        "https://i.ibb.co/DDqYr608/aguila.jpg",
+                        "https://i.ibb.co/Fk3sLL7T/ausangate.jpg"
+                    ]
+                }
+            ],
             eventos: [
                 {
                     title: "Sesión de Fotos 80 años",
@@ -65,19 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         "https://i.ibb.co/2pCFNzQ/carrera-caballos.jpg"
                     ]
                 }
-            ],
-            paisajes: [
-                {
-                    title: "Paisajes y retratos",
-                    image: "https://i.ibb.co/rhDVNVF/nevado.jpg",
-                    description: "Sesión en estudio",
-                    gallery: [
-                        "https://i.ibb.co/VYDJTjWr/retrato.jpg",
-                        "https://i.ibb.co/LXtTMCj7/nevado.jpg"
-
-                    ]
-                }
             ]
+            
         },
         diseno: {
             flyers: [
@@ -442,3 +448,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar la aplicación
     init();
 });
+
