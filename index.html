@@ -1,555 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>🌻 Girasol para ti - Regalo especial</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-  <style>
-    :root {
-      --bg: #0a0012;
-      --gold: #ffcc00;
-      --light-yellow: #ffe066;
-      --amber: #ffb733;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at 30% 20%, #1a0033 0%, #000000 75%);
-      color: var(--light-yellow);
-      font-family: 'Playfair Display', serif;
-      overflow-x: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Orbes flotantes */
-    .glow-orbs {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .orb {
-      position: absolute;
-      background: radial-gradient(circle, rgba(255,204,0,0.32), transparent 70%);
-      border-radius: 50%;
-      filter: blur(80px);
-      animation: float 24s infinite ease-in-out;
-    }
-    .orb:nth-child(1) { width: 240px; height: 240px; top: 10%; left: 8%; animation-delay: 0s; }
-    .orb:nth-child(2) { width: 200px; height: 200px; top: 60%; left: 72%; animation-delay: -9s; }
-    .orb:nth-child(3) { width: 280px; height: 280px; top: 78%; left: 20%; animation-delay: -16s; }
-
-    @keyframes float {
-      0%,100% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(90px, -70px) scale(1.18); }
-    }
-
-    /* Pantallas intro y main */
-    #intro, #main {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: all 1.6s cubic-bezier(0.23,1,0.32,1);
-      z-index: 10;
-    }
-    #intro.hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
-    #main {
-      opacity: 0;
-      transform: scale(1.06);
-      display: none;
-      overflow-y: auto;
-      padding-bottom: 160px;
-    }
-    #main.visible {
-      opacity: 1;
-      transform: scale(1);
-      display: flex;
-    }
-
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(3.2rem, 12vw, 7rem);
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 50px var(--gold), 0 0 90px var(--amber);
-      text-align: center;
-    }
-
-    #name {
-      width: min(90%, 420px);
-      padding: 1.3rem 2.2rem;
-      font-size: 1.55rem;
-      background: rgba(255,255,255,0.07);
-      border: 2px solid rgba(255,204,0,0.6);
-      border-radius: 999px;
-      color: white;
-      text-align: center;
-      outline: none;
-      transition: 0.5s;
-    }
-    #name:focus {
-      border-color: #ffeb3b;
-      box-shadow: 0 0 50px var(--gold);
-      transform: scale(1.04);
-    }
-
-    #startBtn {
-      margin-top: 2.2rem;
-      padding: 1.1rem 4.5rem;
-      font-size: 1.75rem;
-      background: linear-gradient(45deg, var(--gold), #ffaa00);
-      color: #0a0012;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 18px 50px rgba(255,204,0,0.55);
-      transition: all 0.65s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    #startBtn:hover { transform: scale(1.1) translateY(-7px); }
-
-    /* Contenedor del girasol - tamaño estable */
-    #sunflower-container {
-      position: relative;
-      width: min(380px, 70vw);
-      min-width: 280px;
-      height: min(420px, 70vw);
-      min-height: 280px;
-      margin: 20px auto;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    #sunflower-container:hover {
-      transform: scale(1.03);
-      filter: drop-shadow(0 0 20px rgba(255,215,0,0.8));
-    }
-    #sunflower-container:active {
-      transform: scale(1.05);
-      transition: 0.1s;
-    }
-
-    #sunflower {
-      position: absolute;
-      inset: 0;
-      transform: scale(0.12) rotateX(-12deg);
-      transition: all 3.6s cubic-bezier(0.175, 0.885, 0.32, 1.375);
-      filter: drop-shadow(0 40px 80px rgba(255,215,0,0.7));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #sunflower img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      max-width: 100%;
-      max-height: 100%;
-    }
-    #sunflower.grown { transform: scale(1) rotateX(0deg); }
-    #sunflower.sway { animation: gentle-sway 5.5s ease-in-out infinite; }
-
-    @keyframes gentle-sway {
-      0%,100% { transform: scale(1) rotate(-5deg); }
-      50% { transform: scale(1) rotate(5deg); }
-    }
-
-    /* Mensaje centrado */
-    #message {
-      margin: 20px auto 30px;
-      max-width: 85%;
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.4rem, 5vw, 2.2rem);
-      text-align: center;
-      line-height: 1.4;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1.5s ease;
-      text-shadow: 0 0 25px var(--gold);
-      white-space: pre-line;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(5px);
-      border-radius: 50px;
-      padding: 12px 20px;
-    }
-    #message.visible { opacity: 1; transform: translateY(0); }
-
-    /* Pétalos cayendo */
-    .falling-petal {
-      position: absolute;
-      font-size: 2.5rem;
-      color: #ffeb3b;
-      pointer-events: none;
-      animation: fall linear infinite;
-      z-index: 3;
-    }
-    @keyframes fall {
-      to { transform: translateY(120vh) rotate(1620deg); }
-    }
-
-    /* Footer */
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(10,0,18,0.95), rgba(10,0,18,0.85));
-      padding: 12px 15px 20px;
-      text-align: center;
-      border-top: 1px solid rgba(255,204,0,0.3);
-      z-index: 30;
-      backdrop-filter: blur(8px);
-    }
-    footer p { font-size: 0.9rem; margin-bottom: 8px; opacity: 0.9; }
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin: 6px 0 12px;
-    }
-    .social-links a {
-      font-size: 1.8rem;
-      color: var(--light-yellow);
-      transition: 0.3s;
-      text-decoration: none;
-    }
-    .social-links a:hover { transform: scale(1.25); color: #ffeb3b; }
-
-    .payment-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    .payment-btn {
-      background: rgba(255,255,200,0.9);
-      border: none;
-      border-radius: 40px;
-      padding: 6px 14px;
-      font-weight: bold;
-      color: #0a0012;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.9rem;
-      text-decoration: none;
-    }
-    .payment-btn i { font-size: 1.3rem; color: #ffaa33; }
-    .payment-btn:hover { transform: translateY(-2px); background: #ffecb3; }
-
-    /* Modales */
-    .modal-qr {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.2s;
-    }
-    .modal-qr.active {
-      visibility: visible;
-      opacity: 1;
-    }
-    .qr-card {
-      background: white;
-      border-radius: 28px;
-      padding: 20px;
-      text-align: center;
-      max-width: 300px;
-      width: 80%;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-    .qr-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-      margin: 10px 0;
-      background: white;
-    }
-    .qr-card .close-qr {
-      background: #ffaa33;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-weight: bold;
-      margin-top: 10px;
-      cursor: pointer;
-      color: #0a0012;
-    }
-    .qr-card .qr-link {
-      font-size: 0.8rem;
-      word-break: break-all;
-      color: #0a0012;
-      margin-top: 8px;
-    }
-
-    .controls {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 25;
-      display: flex;
-      gap: 12px;
-    }
-    .btn-small {
-      padding: 8px 16px;
-      background: rgba(255,204,0,0.2);
-      border: 1px solid var(--gold);
-      color: var(--light-yellow);
-      border-radius: 40px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 0.9rem;
-    }
-    .btn-small:hover { background: var(--gold); color: #0a0012; }
-
-    @media (max-width: 600px) {
-      .controls { top: 10px; right: 10px; gap: 8px; }
-      .btn-small { padding: 5px 12px; font-size: 0.75rem; }
-      .social-links a { font-size: 1.5rem; gap: 16px; }
-      .payment-btn { padding: 4px 12px; font-size: 0.8rem; }
-      #sunflower-container {
-        width: min(320px, 70vw);
-        min-width: 260px;
-        height: min(360px, 70vw);
-        min-height: 260px;
-      }
-      #message {
-        font-size: 1.2rem;
-        padding: 8px 16px;
-        margin: 15px auto 20px;
-      }
-      #main { padding-bottom: 150px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Leodan Zamalloa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="https://i.ibb.co/YBvFm4XR/logo-leodanzamalloa.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+       <header>
+        <div class="social-header">
+            <a href="https://www.instagram.com/leodanzamalloa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.behance.net/leodanzamalloa" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
+            <a href="https://leodanzamalloa.github.io" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/leodan-zamalloa-huaman-7368a2295/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <h1>LEODAN ZAMALLOA</h1>
+        <p>Fotógrafo | Diseñador | Desarrollador Web</p>
+    </header>
 
-<div class="glow-orbs">
-  <div class="orb"></div><div class="orb"></div><div class="orb"></div>
-</div>
+    <main>
+        <nav id="breadcrumbs">
+            <a href="#" data-category="all">Inicio</a>
+        </nav>
 
-<div id="intro">
-  <h1>🌻 Tu Girasol Amarillo</h1>
-  <input type="text" id="name" placeholder="Escribe tu nombre..." maxlength="30" autocomplete="off">
-  <button id="startBtn">Abrir mi regalo 💛</button>
-</div>
+        <div class="category-buttons">
+            <button data-category="fotografia">Fotografía</button>
+            <button data-category="diseno">Diseño</button>
+            <button data-category="desarrollo">Desarrollo Web</button>
+        </div>
 
-<div id="main">
-  <div id="sunflower-container">
-    <div id="sunflower">
-      <!-- IMAGEN DEL GIRASOL (reemplaza esta URL por la tuya) -->
-      <img src="florr.png" alt="Girasol amarillo">
+        <div id="subcategories" class="subcategories"></div>
+
+        <!-- Sección Todos al inicio -->
+        <section id="all-projects" class="all-projects-section">
+            <h2>Todos mis proyectos</h2>
+            <div id="all-projects-container" class="all-projects-grid"></div>
+        </section>
+
+        <!-- Sección de proyectos por categoría -->
+        <div id="projects-container" class="projects-grid"></div>
+    </main>
+
+    <section class="contact-section">
+        <h2>Contáctame</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <input type="text" id="name" required>
+                <label for="name">Nombre completo</label>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" required>
+                <label for="email">Correo electrónico</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="subject" required>
+                <label for="subject">Asunto</label>
+            </div>
+            <div class="form-group">
+                <textarea id="message" required></textarea>
+                <label for="message">Mensaje</label>
+            </div>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>LEODAN ZAMALLOA</h3>
+                <p>Creatividad visual y desarrollo web</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> leodanzamalloa1998@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +51 937 489 235</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Modal Galería -->
+    <div id="gallery-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="slider-container">
+                <div class="slider-track" id="slider-track"></div>
+            </div>
+            <div class="slider-nav">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <div class="slide-counter">
+                    <span id="current-slide">1</span>/<span id="total-slides">0</span>
+                </div>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div id="message">
-    <div id="textContent"></div>
-  </div>
-
-  <div class="controls">
-    <button class="btn-small" id="restart">🌼 Otro girasol</button>
-    <button class="btn-small" id="musicToggle">♪ Música</button>
-  </div>
-</div>
-
-<footer>
-  <p>💛 Apóyame siguiéndome en mis redes como agradecimiento o una donación para seguir creando</p>
-  <div class="social-links">
-    <a href="https://instagram.com/leodanzamalloa" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://tiktok.com/@leodanzamalloa" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.facebook.com/share/1HL2oUSmbe/" target="_blank"><i class="fab fa-facebook"></i></a>
-  </div>
-  <div class="payment-buttons">
-    <button class="payment-btn" id="paypalBtn"><i class="fab fa-paypal"></i> PayPal</button>
-    <button class="payment-btn" id="yapeBtn"><i class="fas fa-qrcode"></i> Yape</button>
-  </div>
-</footer>
-
-<!-- Modal PayPal -->
-<div id="paypalModal" class="modal-qr">
-  <div class="qr-card">
-    <h3 style="color:#0a0012;">💛 Donar vía PayPal</h3>
-    <img id="paypalQR" src="" alt="QR PayPal">
-    <div class="qr-link" id="paypalLink"></div>
-    <button class="close-qr" data-modal="paypalModal">Cerrar</button>
-  </div>
-</div>
-
-<!-- Modal Yape -->
-<div id="yapeModal" class="modal-qr">
-  <div class="qr-card">
-    <h3 style="color:#0a0012;">📱 Escanea para Yapear</h3>
-    <img id="yapeQR" src="yape.jpeg" alt="Código Yape">
-    <button class="close-qr" data-modal="yapeModal">Cerrar</button>
-  </div>
-</div>
-
-<audio id="music" loop preload="none">
-  <source src="audio.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-$(document).ready(function() {
-  // ========== CONFIGURACIÓN ==========
-  // Reemplaza con tus datos reales
-  const PAYPAL_URL = "https://paypal.me/liozama";   // <--- Cambia aquí
-  const YAPE_QR_IMAGE = "https://via.placeholder.com/200?text=QR+YAPE"; // <--- Cambia por tu imagen QR
-
-  const intro = $('#intro');
-  const main = $('#main');
-  const nameInput = $('#name');
-  const startBtn = $('#startBtn');
-  const restartBtn = $('#restart');
-  const musicToggle = $('#musicToggle');
-  const audio = document.getElementById('music');
-  const petalsFall = $('<div>').css({ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 3 }).appendTo('body');
-
-  // Modales
-  const paypalModal = $('#paypalModal');
-  const yapeModal = $('#yapeModal');
-  const paypalQR = $('#paypalQR');
-  const paypalLink = $('#paypalLink');
-
-  // Generar QR de PayPal automáticamente
-  if (PAYPAL_URL) {
-    const qrUrl = `pay.jpeg`;
-    paypalQR.attr('src', qrUrl);
-    paypalLink.html(`<a href="${PAYPAL_URL}" target="_blank" style="color:#0a0012;">${PAYPAL_URL}</a>`);
-  }
-
-  // Establecer QR de Yape con imagen real
-  $('#yapeQR').attr('yape.jpeg', YAPE_QR_IMAGE);
-
-  // Abrir modales
-  $('#paypalBtn').on('click', () => paypalModal.addClass('active'));
-  $('#yapeBtn').on('click', () => yapeModal.addClass('active'));
-
-  // Cerrar modales con botón o clic fuera
-  $('.close-qr').on('click', function() {
-    const modalId = $(this).data('modal');
-    $(`#${modalId}`).removeClass('active');
-  });
-  $('.modal-qr').on('click', function(e) {
-    if (e.target === this) $(this).removeClass('active');
-  });
-
-  // Pétalos cayendo
-  function createFallingPetal() {
-    const petal = $('<div class="falling-petal">🌻</div>').css({
-      left: Math.random() * 100 + 'vw',
-      animationDuration: (10 + Math.random() * 15) + 's',
-      animationDelay: -Math.random() * 25 + 's',
-      fontSize: (1.5 + Math.random() * 1.5) + 'rem'
-    });
-    petalsFall.append(petal);
-    setTimeout(() => petal.remove(), 40000);
-  }
-
-  function startPetals() {
-    for (let i = 0; i < 12; i++) createFallingPetal();
-    setInterval(() => {
-      if (Math.random() > 0.4) createFallingPetal();
-    }, 500);
-  }
-
-  // Mensaje emotivo con escritura
-  function typeText(name) {
-    const message = `✨ Para ti, mi persona especial ✨\n\nEste girasol brilla con todo mi cariño.\nGracias por existir, ${name}.\n\n🌻 Eres luz en mi camino 🌻`;
-    $('#textContent').html('').css('white-space', 'pre-line');
-    let i = 0;
-    const chars = message.split('');
-    const interval = setInterval(() => {
-      if (i < chars.length) {
-        $('#textContent').append(chars[i] === '\n' ? '<br>' : chars[i]);
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 45);
-  }
-
-  // Iniciar experiencia con autoplay de música
-  function startExperience() {
-    let userName = nameInput.val().trim();
-    if (userName === "") userName = "mi amor";
-
-    // Iniciar música automáticamente (porque el usuario ya hizo clic)
-    audio.volume = 0.25;
-    audio.play().catch(e => console.log("Autoplay no permitido"));
-    musicToggle.text('⏸️ Pausar');
-
-    intro.addClass('hidden');
-
-    setTimeout(() => {
-      main.addClass('visible').show();
-
-      setTimeout(() => $('#sunflower').addClass('grown'), 600);
-      setTimeout(() => {
-        $('#sunflower').addClass('sway');
-        startPetals();
-      }, 3800);
-
-      setTimeout(() => {
-        $('#message').addClass('visible');
-        typeText(userName);
-      }, 4800);
-    }, 1400);
-  }
-
-  function reset() {
-    petalsFall.empty();
-    $('#sunflower').removeClass('grown sway');
-    $('#message').removeClass('visible');
-    $('#textContent').html('');
-    main.removeClass('visible').hide();
-    intro.removeClass('hidden');
-    nameInput.val('').focus();
-    audio.pause();
-    audio.currentTime = 0;
-    musicToggle.text('♪ Música');
-  }
-
-  startBtn.on('click', startExperience);
-  nameInput.on('keypress', e => { if (e.key === 'Enter') startExperience(); });
-  restartBtn.on('click', reset);
-  musicToggle.on('click', () => {
-    if (audio.paused) {
-      audio.volume = 0.25;
-      audio.play().catch(() => {});
-      musicToggle.text('⏸️ Pausar');
-    } else {
-      audio.pause();
-      musicToggle.text('♪ Música');
-    }
-  });
-
-  // Efecto táctil en la flor
-  $('#sunflower-container').on('touchstart', function() {
-    $(this).addClass('touch-active');
-    setTimeout(() => $(this).removeClass('touch-active'), 150);
-  });
-});
-</script>
+    
+<script src="js/scripts.js"></script>
 </body>
 </html>
