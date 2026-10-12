@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     gallery: [
                         "https://i.postimg.cc/bNN1HWwT/MG-8948.jpg",
                         "https://i.postimg.cc/vHqfPh49/MG-8914.jpg",
-                        "https://i.postimg.cc/VLLXBpkD/MG-8956.jpg"
+                        "https://i.postimg.cc/VLLXBpkD/MG-8956.jpg",
+                        "https://i.postimg.cc/J44jcvzb/MG-8944.jpg",
+                        "https://i.postimg.cc/L66jBw8k/MG-8946.jpg"
                     ]
                 }
 
