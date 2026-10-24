@@ -3,6 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectsData = {
         fotografia: {
             deporte: [
+
+                {
+                    title: "Caminos del inca 2026",
+                    image: "https://i.postimg.cc/jjC0g4Xy/MG-8716.jpg",
+                    description: "Sesión en estudio",
+                    gallery: [
+                        "https://i.postimg.cc/mrhfXywg/MG-8725.jpg",
+                        "https://i.postimg.cc/k5D31vc5/MG-8808.jpg",
+                        "https://i.postimg.cc/fbF46S2G/MG-8838.jpg",
+                        "https://i.postimg.cc/HLKGf8ZN/MG-8879.jpg",
+                        "https://i.postimg.cc/zfMm9H2z/MG-8898.jpg",
+                        "https://i.postimg.cc/Bb9rv9GX/MG-8942.jpg",
+
+                    ]
+                },
                 {
                     title: "Copa Peru Etapa provincial cobertura (FC Zarzuela)",
                     image: "https://i.postimg.cc/y8DQnk8S/MG-4004.jpg",
@@ -22,9 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     gallery: [
                         "https://i.postimg.cc/bNN1HWwT/MG-8948.jpg",
                         "https://i.postimg.cc/vHqfPh49/MG-8914.jpg",
-                        "https://i.postimg.cc/VLLXBpkD/MG-8956.jpg",
-                        "https://i.postimg.cc/J44jcvzb/MG-8944.jpg",
-                        "https://i.postimg.cc/L66jBw8k/MG-8946.jpg"
+                        "https://i.postimg.cc/VLLXBpkD/MG-8956.jpg"
                     ]
                 }
 
