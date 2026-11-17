@@ -452,10 +452,9 @@
             }
         }
 
-/* ==========================================
-   POPUP PROMOCIONAL - 50% OFF
-   LEODAN ZAMALLOA
-========================================== */
+/* =====================================
+   CUPÓN PROMOCIONAL - LEODAN ZAMALLOA
+===================================== */
 
 .coupon-overlay {
     position: fixed;
@@ -463,20 +462,16 @@
     z-index: 99999;
 
     display: flex;
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
     padding: 20px;
 
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    background: rgba(20, 35, 50, 0.82);
+    backdrop-filter: blur(8px);
 
     opacity: 0;
     visibility: hidden;
-
-    transition: opacity 0.5s ease,
-                visibility 0.5s ease;
+    transition: .4s ease;
 }
 
 .coupon-overlay.active {
@@ -484,62 +479,61 @@
     visibility: visible;
 }
 
-/* CONTENEDOR */
+/* VENTANA PRINCIPAL */
 
 .coupon-modal {
     position: relative;
-
     width: 100%;
     max-width: 420px;
-
     overflow: hidden;
 
-    background: #111;
-    color: #fff;
+    background: linear-gradient(145deg, #2c3e50, #172b3c);
+    color: white;
 
-    border: 1px solid rgba(252, 0, 0, 0.6);
-    border-radius: 22px;
+    border: 1px solid #3498db;
+    border-radius: 24px;
 
-    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    box-shadow: 0 25px 80px rgba(0,0,0,.45);
 
-    transform: translateY(60px) scale(0.85);
+    transform: scale(.7) translateY(40px);
     opacity: 0;
 
-    transition: all 0.6s cubic-bezier(.17,.67,.3,1.3);
+    transition: .6s cubic-bezier(.2,1.4,.4,1);
 }
 
 .coupon-overlay.active .coupon-modal {
-    transform: translateY(0) scale(1);
+    transform: scale(1) translateY(0);
     opacity: 1;
 }
 
-/* BOTÓN CERRAR */
+/* LUCES DECORATIVAS */
 
-.coupon-close {
+.coupon-modal::before {
+    content: "";
     position: absolute;
-    top: 12px;
-    right: 16px;
 
-    z-index: 10;
+    width: 250px;
+    height: 250px;
 
-    width: 35px;
-    height: 35px;
+    top: -120px;
+    right: -100px;
 
-    border: none;
+    background: #3498db;
+    filter: blur(75px);
+    opacity: .4;
     border-radius: 50%;
 
-    background: rgba(255,255,255,0.1);
-    color: white;
-
-    font-size: 25px;
-    cursor: pointer;
-
-    transition: 0.3s;
+    animation: couponGlow 5s infinite alternate;
 }
 
-.coupon-close:hover {
-    background: #fc0000;
-    transform: rotate(90deg);
+@keyframes couponGlow {
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(-40px,40px);
+    }
 }
 
 /* CONTENIDO */
@@ -548,65 +542,64 @@
     position: relative;
     z-index: 2;
 
-    padding: 35px 30px 30px;
-
+    padding: 35px 30px;
     text-align: center;
 }
 
-/* DECORACIÓN */
+/* CERRAR */
 
-.coupon-decoration {
+.coupon-close {
     position: absolute;
+    top: 12px;
+    right: 15px;
+    z-index: 5;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
     border-radius: 50%;
-    background: rgba(252,0,0,0.12);
-    filter: blur(35px);
+
+    background: rgba(255,255,255,.12);
+    color: white;
+
+    font-size: 25px;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.decoration-1 {
-    width: 180px;
-    height: 180px;
-    top: -70px;
-    left: -70px;
+.coupon-close:hover {
+    background: #3498db;
+    transform: rotate(90deg);
 }
 
-.decoration-2 {
-    width: 180px;
-    height: 180px;
-    bottom: -80px;
-    right: -70px;
-}
-
-/* ICONO REGALO */
+/* REGALO */
 
 .coupon-gift {
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
 
     margin: 0 auto 18px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    background: #fc0000;
+    background: linear-gradient(135deg, #3498db, #5dade2);
     border-radius: 20px;
 
-    font-size: 30px;
+    font-size: 32px;
 
-    animation: giftBounce 2s infinite;
+    animation: giftFloat 2s infinite ease-in-out;
 }
 
-@keyframes giftBounce {
+@keyframes giftFloat {
     0%, 100% {
-        transform: translateY(0) rotate(0);
+        transform: translateY(0) rotate(-5deg);
     }
 
-    30% {
-        transform: translateY(-10px) rotate(-8deg);
-    }
-
-    60% {
-        transform: translateY(0) rotate(8deg);
+    50% {
+        transform: translateY(-12px) rotate(5deg);
     }
 }
 
@@ -615,73 +608,72 @@
 .coupon-subtitle {
     display: block;
 
-    color: #fc0000;
-
+    color: #5dade2;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 3px;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .coupon-content h2 {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 900;
-
-    margin: 0 0 12px;
-
-    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 .coupon-description {
-    color: #ccc;
-
+    color: #dce6ed;
     font-size: 14px;
     line-height: 1.6;
-
-    margin-bottom: 20px;
 }
 
 /* DESCUENTO */
 
 .coupon-discount {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    margin: 10px 0;
-
-    color: #fc0000;
+    margin: 25px 0;
 
     animation: discountPulse 2s infinite;
 }
 
 .discount-number {
     font-size: 115px;
-    font-weight: 1000;
-    line-height: 0.9;
+    font-weight: 900;
+    line-height: 1;
 
-    letter-spacing: -8px;
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #5dade2,
+        #3498db
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .discount-details {
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
-
-    margin-left: 12px;
+    margin-left: 10px;
 }
 
 .discount-details span:first-child {
-    font-size: 53px;
+    font-size: 55px;
     font-weight: 900;
-    line-height: 0.9;
+    color: white;
 }
 
 .discount-details span:last-child {
-    font-size: 27px;
+    font-size: 28px;
     font-weight: 900;
+    color: #5dade2;
 }
 
 @keyframes discountPulse {
@@ -694,73 +686,60 @@
     }
 }
 
-/* TEXTO DE OFERTA */
+/* TEXTO DE LA PROMOCIÓN */
 
 .coupon-offer {
     max-width: 280px;
-
-    margin: 20px auto;
+    margin: 15px auto 22px;
 
     font-size: 12px;
     font-weight: 800;
-
+    line-height: 1.7;
     letter-spacing: 1.5px;
-    line-height: 1.6;
-
-    color: white;
 }
 
 /* BOTÓN WHATSAPP */
 
 .coupon-button {
     display: flex;
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
     gap: 10px;
 
-    width: 100%;
+    padding: 16px;
 
-    padding: 16px 12px;
-
-    background: #fc0000;
+    background: linear-gradient(135deg, #3498db, #2476b5);
     color: white;
 
-    border-radius: 10px;
+    border-radius: 50px;
 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 900;
-
     text-decoration: none;
-    letter-spacing: 0.5px;
 
-    box-shadow: 0 5px 25px rgba(252,0,0,0.3);
+    box-shadow: 0 8px 25px rgba(52,152,219,.3);
 
-    transition: all 0.3s ease;
+    transition: .3s;
+}
+
+.coupon-button:hover {
+    background: white;
+    color: #2c3e50;
+    transform: translateY(-4px);
 }
 
 .coupon-button i {
     font-size: 22px;
 }
 
-.coupon-button:hover {
-    background: #fff;
-    color: #fc0000;
-
-    transform: translateY(-4px);
-
-    box-shadow: 0 10px 30px rgba(252,0,0,0.3);
-}
-
-/* TEXTO FINAL */
+/* PIE */
 
 .coupon-footer {
     display: block;
-
     margin-top: 18px;
 
+    color: #b9c8d3;
     font-size: 10px;
-    color: #999;
 }
 
 /* RESPONSIVE */
@@ -769,44 +748,36 @@
 
     .coupon-modal {
         max-width: 350px;
-        border-radius: 18px;
     }
 
     .coupon-content {
-        padding: 30px 22px 25px;
+        padding: 30px 22px;
     }
 
     .coupon-content h2 {
-        font-size: 27px;
+        font-size: 29px;
     }
 
     .discount-number {
-        font-size: 95px;
+        font-size: 100px;
     }
 
     .discount-details span:first-child {
-        font-size: 43px;
+        font-size: 45px;
     }
 
     .discount-details span:last-child {
-        font-size: 23px;
-    }
-
-    .coupon-description {
-        font-size: 13px;
+        font-size: 25px;
     }
 }
 
 /* ACCESIBILIDAD */
 
 @media (prefers-reduced-motion: reduce) {
-    .coupon-gift,
-    .coupon-discount {
-        animation: none;
-    }
 
-    .coupon-modal,
-    .coupon-overlay {
-        transition: none;
+    .coupon-gift,
+    .coupon-discount,
+    .coupon-modal::before {
+        animation: none;
     }
 }
