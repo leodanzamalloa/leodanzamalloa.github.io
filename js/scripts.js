@@ -432,51 +432,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(allProjectsContainer, { childList: true });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-
-    const popup = document.getElementById("coupon-popup");
-    const closeButton = document.getElementById("coupon-close");
-
-    if (!popup || !closeButton) return;
-
-    // Mostrar después de 5 segundos
-    if (!sessionStorage.getItem("couponShown")) {
-
-        setTimeout(function () {
-
-            popup.classList.add("active");
-
-            sessionStorage.setItem("couponShown", "true");
-
-        }, 5000);
-
-    }
-
-    // Cerrar con el botón
-    closeButton.addEventListener("click", function () {
-        popup.classList.remove("active");
-    });
-
-    // Cerrar al hacer clic fuera de la ventana
-    popup.addEventListener("click", function (event) {
-
-        if (event.target === popup) {
-            popup.classList.remove("active");
-        }
-
-    });
-
-    // Cerrar con ESC
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-            popup.classList.remove("active");
-        }
-
-    });
-
-});
-
     // Iniciar la aplicación
     init();
 });
