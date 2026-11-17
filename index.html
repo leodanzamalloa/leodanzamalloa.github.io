@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="https://i.ibb.co/YBvFm4XR/logo-leodanzamalloa.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
 </head>
 <body>
        <header>
@@ -107,17 +108,14 @@
             </div>
         </div>
     </div>
-<!-- POPUP CUPÓN 50% OFF -->
+    <!-- CUPÓN PROMOCIONAL -->
 <div id="coupon-popup" class="coupon-overlay">
 
     <div class="coupon-modal">
 
-        <button class="coupon-close" id="coupon-close" aria-label="Cerrar">
+        <button id="coupon-close" class="coupon-close">
             &times;
         </button>
-
-        <div class="coupon-decoration decoration-1"></div>
-        <div class="coupon-decoration decoration-2"></div>
 
         <div class="coupon-content">
 
@@ -126,19 +124,19 @@
             </div>
 
             <span class="coupon-subtitle">
-                ¡UNA SORPRESA PARA TI!
+                UNA SORPRESA PARA TI
             </span>
 
-            <h2>
-                ¡FELICIDADES!
-            </h2>
+            <h2>¡FELICIDADES!</h2>
 
             <p class="coupon-description">
-                Has desbloqueado un beneficio especial por visitar mi portafolio.
+                Por visitar mi portafolio, tienes un
+                beneficio especial.
             </p>
 
             <div class="coupon-discount">
                 <span class="discount-number">50</span>
+
                 <div class="discount-details">
                     <span>%</span>
                     <span>OFF</span>
@@ -146,17 +144,18 @@
             </div>
 
             <p class="coupon-offer">
-                DE DESCUENTO EN TU PRÓXIMA SESIÓN FOTOGRÁFICA
+                DE DESCUENTO EN TU PRÓXIMA
+                SESIÓN FOTOGRÁFICA
             </p>
 
-            <a href="https://wa.me/51937489235?text=Hola%20Leodan%2C%20visite%20tu%20portafolio%20y%20acabo%20de%20ganar%20mi%20cupon%20del%2050%25%20de%20descuento.%20Quiero%20mas%20informacion."
-               target="_blank"
-               rel="noopener noreferrer"
-               class="coupon-button">
-
+            <a
+                href="https://wa.me/51937489235?text=Hola%2C%20visite%20tu%20portafolio%20y%20quiero%20reclamar%20mi%20cupon%20especial%20del%2050%25%20de%20descuento%20para%20mi%20proxima%20sesion%20fotografica."
+                target="_blank"
+                rel="noopener"
+                class="coupon-button"
+            >
                 <i class="fab fa-whatsapp"></i>
                 RECLAMAR MI CUPÓN
-
             </a>
 
             <span class="coupon-footer">
@@ -164,47 +163,43 @@
             </span>
 
         </div>
-
     </div>
-
-</div>    
+</div>
 <script src="js/scripts.js"></script>
-    <script>
-(function () {
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
     const popup = document.getElementById("coupon-popup");
     const closeButton = document.getElementById("coupon-close");
 
-    if (!popup || !closeButton) {
-        console.error("No se encontró el HTML del cupón.");
-        return;
-    }
+    if (!popup || !closeButton) return;
 
-    // Mostrar después de 5 segundos
+    // Mostrar después de 3 segundos
     setTimeout(function () {
         popup.classList.add("active");
-    }, 5000);
+    }, 2000);
 
-    // Cerrar botón X
+    // Cerrar ventana
     closeButton.addEventListener("click", function () {
         popup.classList.remove("active");
     });
 
-    // Cerrar haciendo clic fuera
-    popup.addEventListener("click", function (e) {
-        if (e.target === popup) {
+    // Cerrar al pulsar fuera
+    popup.addEventListener("click", function (event) {
+        if (event.target === popup) {
             popup.classList.remove("active");
         }
     });
 
     // Cerrar con ESC
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
             popup.classList.remove("active");
         }
     });
 
-})();
+});
 </script>
 <script type="application/ld+json">
 {
