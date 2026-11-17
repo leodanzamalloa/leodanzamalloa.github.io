@@ -169,6 +169,43 @@
 
 </div>    
 <script src="js/scripts.js"></script>
+    <script>
+(function () {
+
+    const popup = document.getElementById("coupon-popup");
+    const closeButton = document.getElementById("coupon-close");
+
+    if (!popup || !closeButton) {
+        console.error("No se encontró el HTML del cupón.");
+        return;
+    }
+
+    // Mostrar después de 5 segundos
+    setTimeout(function () {
+        popup.classList.add("active");
+    }, 5000);
+
+    // Cerrar botón X
+    closeButton.addEventListener("click", function () {
+        popup.classList.remove("active");
+    });
+
+    // Cerrar haciendo clic fuera
+    popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+            popup.classList.remove("active");
+        }
+    });
+
+    // Cerrar con ESC
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            popup.classList.remove("active");
+        }
+    });
+
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
